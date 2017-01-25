@@ -3,6 +3,7 @@
 namespace Example\Application\Model;
 
 use Directory;
+use RuntimeException;
 use Example\UserContext\Model\UserRepository;
 use Example\UserContext\Model\UserPorter;
 
@@ -18,6 +19,10 @@ class FileBasedUserRepository implements UserRepository
      */
     private $userPorter;
 
+    /**
+     * @param Directory  $storageDirectory
+     * @param UserPorter $userPorter
+     */
     public function __construct(Directory $storageDirectory, UserPorter $userPorter)
     {
         $this->storageDirectory = $storageDirectory;
@@ -26,6 +31,7 @@ class FileBasedUserRepository implements UserRepository
 
     /**
      * @param User $user
+     * @throws RuntimeException
      */
     public function addUser(User $user)
     {
