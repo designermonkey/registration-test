@@ -29,7 +29,11 @@ class FileBasedUserRepository implements UserRepository
      */
     public function addUser(User $user)
     {
-        $filename = $user->identity();
+        $filename = implode('/', [
+            $this->storageDirectory->path,
+            $user->identity()
+        ]).'.json';
+
         $contents = $this->userPorter->export($user);
 
         if (!file_put_contents($filename, $contents)) {
