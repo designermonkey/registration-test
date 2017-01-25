@@ -2,6 +2,7 @@
 
 namespace Example\UserContext\Model;
 
+use JsonSerializable;
 use Example\Identity\Identifiable;
 use Example\Identity\HasIdentity;
 use Example\Model\EmailAddress;
@@ -9,7 +10,7 @@ use Example\Model\Password;
 use Example\Model\StringLiteral;
 use Example\Model\DateOfBirth;
 
-class User implements Identifiable
+class User implements Identifiable, JsonSerializable
 {
     use HasIdentity;
 
@@ -48,5 +49,16 @@ class User implements Identifiable
         $this->password = $password;
         $this->name = $name;
         $this->dateOfBirth = $dateOfBirth;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'identity' => (string) $this->identity,
+            'emailAddress' => (string) $this->emailAddress,
+            'password' => (string) $this->password,
+            'name' => (string) $this->name,
+            'dateOfBirth' => (string) $this->dateOfBirth
+        ];
     }
 }
