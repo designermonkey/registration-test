@@ -6,7 +6,7 @@ use InvalidArgumentException;
 
 class Password extends StringLiteral
 {
-    const MINIMUM_LENGTH = 8;
+    const MINIMUM_LENGTH = 4;
 
     /**
      * @param string $value

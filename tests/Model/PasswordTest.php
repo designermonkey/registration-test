@@ -17,10 +17,10 @@ class PasswordTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(Password::class, $subject);
     }
 
-    public function testShouldNotAcceptLessThanEightCharacters()
+    public function testShouldNotAcceptLessThanRequiredCharacters()
     {
         $this->setExpectedException(InvalidArgumentException::class);
-        $this->createInstanceWith('badger');
+        $this->createInstanceWith('bad');
     }
 
     public function testShouldReturnStringValue()
