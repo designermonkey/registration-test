@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+    <title>Documentation</title>
+    <parser>
+        <target>doc/api</target>
+    </parser>
+    <transformer>
+        <target>doc/api</target>
+    </transformer>
+    <transformations>
+        <template name="clean" />
+    </transformations>
+    <files>
+        <directory>src/</directory>
+        <directory>tests/</directory>
+    </files>
+</phpdoc>
