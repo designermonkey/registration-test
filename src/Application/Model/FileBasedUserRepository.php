@@ -6,6 +6,7 @@ use Directory;
 use RuntimeException;
 use Example\UserContext\Model\UserRepository;
 use Example\UserContext\Model\UserPorter;
+use Example\UserContext\Model\User;
 
 class FileBasedUserRepository implements UserRepository
 {
@@ -40,7 +41,7 @@ class FileBasedUserRepository implements UserRepository
             $user->identity()
         ]).'.json';
 
-        $contents = $this->userPorter->export($user);
+        $contents = $this->userPorter->exportUser($user);
 
         if (!file_put_contents($filename, $contents)) {
             throw new RuntimeException(sprintf(

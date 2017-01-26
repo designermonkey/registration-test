@@ -54,25 +54,32 @@ class UserValidationService
      * @param  string $password
      * @return array
      */
-    public function validatePassword(string $password): array
+    public function validatePassword(array $passwordSet): array
     {
         try {
-            $createdPassword = $this->userFactory->createPassword($password);
+            $createdPassword = $this->userFactory->createPassword($passwordSet['password']);
 
             if (!$this->passwordSpecification->isSatisfiedBy($createdPassword)) {
                 throw new InvalidArgumentException("Supplied password is not allowed.");
+            }
+
+            if ((string) $createdPassword !== $passwordSet['confirm']) {
+                throw new InvalidArgumentException("Supplied passwords do not match.");
             }
         } catch (InvalidArgumentException $exception) {
             return [
                 'message' => $exception->getMessage(),
                 'valid' => false,
-                'password' => $password
+                'password' => $passwordSet
             ];
         }
 
         return [
             'valid' => true,
-            'password' => (string) $createdPassword
+            'password' => [
+                'password' => (string) $createdPassword,
+                'confirm' => (string) $passwordSet['confirm']
+            ]
         ];
     }
 
@@ -101,7 +108,11 @@ class UserValidationService
     public function validateDateOfBirth(string $dateOfBirth): array
     {
         try {
-            $parts = explode('/', $dateOfBirth);
+            if (empty($dateOfBirth)) {
+                throw new InvalidArgumentException("Date Of Birth must not be empty.");
+            }
+
+            $parts = explode('-', $dateOfBirth);
             $createdDateOfBirth = $this->userFactory->createDateOfBirth(...$parts);
         } catch (InvalidArgumentException $exception) {
             return [
@@ -113,7 +124,7 @@ class UserValidationService
 
         return [
             'valid' => true,
-            'dateOfBirth' => (string) $createDateOfBirth
+            'dateOfBirth' => (string) $createdDateOfBirth
         ];
     }
 }

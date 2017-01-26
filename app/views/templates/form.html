@@ -2,10 +2,46 @@
 {{< layouts/main }}
 
 {{$ content}}
-<form action="">
-    <fieldset></fieldset>
-    <fieldset></fieldset>
-    <fieldset></fieldset>
+<form action="" method="post">
+    <fieldset>
+        <label for="email-address">
+            <span>Email</span>
+            <input type="email" name="emailAddress" {{#fields.emailAddress}}value="{{.}}"{{/fields.emailAddress}}/>
+            {{# validation.emailAddress }}
+                {{> partials/validation-message }}
+            {{/ validation.emailAddress }}
+        </label>
+        <label for="password">
+            <span>Password</span>
+            <input type="password" name="password[password]"{{#fields.password}}value="{{password}}"{{/fields.password}}/>
+            {{# validation.password }}
+                {{> partials/validation-message }}
+            {{/ validation.password }}
+        </label>
+        <label for="password-confirm">
+            <span>Confirm Password</span>
+            <input type="password" name="password[confirm]"{{#fields.password}}value="{{confirm}}"{{/fields.password}}/>
+        </label>
+    </fieldset>
+    <fieldset>
+        <label for="name">
+            <span>Name</span>
+            <input type="text" name="name"{{#fields.name}}value="{{.}}"{{/fields.name}}/>
+            {{# validation.name }}
+                {{> partials/validation-message }}
+            {{/ validation.name }}
+        </label>
+        <label for="date-of-birth">
+            <span>Date of Birth</span>
+            <input type="date" name="dateOfBirth"{{#fields.dateOfBirth}}value="{{.}}"{{/fields.dateOfBirth}}/>
+            {{# validation.dateOfBirth }}
+                {{> partials/validation-message }}
+            {{/ validation.dateOfBirth }}
+        </label>
+    </fieldset>
+    <fieldset>
+        <button type="submit" name="action">Register</button>
+    </fieldset>
 </form>
 {{/ content}}
 

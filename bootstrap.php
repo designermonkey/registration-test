@@ -34,12 +34,17 @@ $injector->define(Example\UserContext\Api\UserValidationService::class, [
     'passwordSpecification' => Example\UserContext\Model\PasswordIsNotBlockedSpecification::class
 ]);
 
+$injector->define(Example\Application\Model\FileBasedUserRepository::class, [
+    ':storageDirectory' => dir(APPLICATION_ROOT.'/app/data/users'),
+    'userPorter' => Example\Application\Model\JsonUserPorter::class
+]);
+$injector->share(Example\Application\Model\FileBasedUserRepository::class);
+
+$injector->define(Example\UserContext\Api\UserRegistrationService::class, [
+    'userRepository' => Example\Application\Model\FileBasedUserRepository::class
+]);
+
 $injector->define(Example\UserContext\Model\PasswordIsNotBlockedSpecification::class, [
     ':fileLocation' => dir(APPLICATION_ROOT.'/app/data'),
     ':blockedPasswordsFileName' => 'password-blacklist.txt'
-]);
-
-$injector->define(Example\Application\Model\FileBasedUserRepository::class, [
-    ':storageDirectory' => dir(APPLICATION_ROOT.'/app/data/users'),
-    ':userPorter' => $injector->make(Example\Application\Model\JsonUserPorter::class)
 ]);

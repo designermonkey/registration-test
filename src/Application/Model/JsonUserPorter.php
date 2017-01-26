@@ -38,7 +38,7 @@ class JsonUserPorter implements UserPorter
      */
     public function importUser($data): User
     {
-        $data = array_merge($this->defaults, $data);
+        $data = array_merge($this->defaults, json_decode($data, true));
 
         return $this->userFactory->createUser(
             $data['emailAddress'],

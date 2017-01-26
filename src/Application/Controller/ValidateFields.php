@@ -10,6 +10,8 @@ use Example\UserContext\Api\UserValidationService;
 
 class ValidateFields
 {
+    use CanCapitalizeString;
+
     /**
      * @var UserValidationService
      */
@@ -28,25 +30,10 @@ class ValidateFields
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, array $args)
     {
-        $method = 'validate' . $this->camelizeString($args['field']);
+        $method = 'validate' . $this->capitalizeString($args['field']);
         $value = $request->getQueryParams()['value'];
         $result = call_user_func_array([$this->validationService, $method], [$value]);
 
         return new JsonResponse($result);
-    }
-
-    /**
-     * @param  string $string
-     * @return string
-     */
-    private function camelizeString(string $string): string
-    {
-        $words = preg_split('/[ _-]+/', $string);
-
-        array_walk($words, function (&$word) {
-            $word = strtoupper(substr($word, 0, 1)) . substr($word, 1);
-        });
-
-        return implode('', $words);
     }
 }

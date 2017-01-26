@@ -70,14 +70,14 @@ class UserFactory
      * @param  string $dateOfBirth
      * @return User
      */
-    public function createUser(string $emailAddress, string $password, string $name, string $dateOfBirth, string $userId = null): User
+    public function createUser(string $emailAddress, string $password, string $name, array $dateOfBirth, string $userId = null): User
     {
         return new User(
             $this->createUserId($userId),
             $this->createEmailAddress($emailAddress),
             $this->createPassword($password),
             $this->createName($name),
-            $this->createDateOfBirth($dateOfBirth)
+            $this->createDateOfBirth(...$dateOfBirth)
         );
     }
 }
