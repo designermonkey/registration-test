@@ -6,7 +6,7 @@
     <fieldset>
         <label for="email-address">
             <span>Email</span>
-            <input type="email" name="emailAddress" {{#fields.emailAddress}}value="{{.}}"{{/fields.emailAddress}} placeholder="Name"/>
+            <input type="email" name="emailAddress" {{#fields.emailAddress}}value="{{.}}"{{/fields.emailAddress}} placeholder="Email"/>
             {{# validation.emailAddress }}
                 {{> partials/validation-message }}
             {{/ validation.emailAddress }}
