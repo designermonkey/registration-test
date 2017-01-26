@@ -2,6 +2,7 @@
 
 namespace Example\UserContext\Api;
 
+use InvalidArgumentException;
 use Example\Model\Specification;
 use Example\UserContext\Model\UserRepository;
 use Example\UserContext\Model\UserFactory;
@@ -35,7 +36,6 @@ class UserValidationService
     {
         try {
             $createdEmailAddress = $this->userFactory->createEmailAddress($emailAddress);
-            $this->passwordSpecification->isSatisfiedBy($createdPassword);
         } catch (InvalidArgumentException $exception) {
             return [
                 'message' => $exception->getMessage(),
@@ -58,6 +58,10 @@ class UserValidationService
     {
         try {
             $createdPassword = $this->userFactory->createPassword($password);
+
+            if (!$this->passwordSpecification->isSatisfiedBy($createdPassword)) {
+                throw new InvalidArgumentException("Supplied password is not allowed.");
+            }
         } catch (InvalidArgumentException $exception) {
             return [
                 'message' => $exception->getMessage(),

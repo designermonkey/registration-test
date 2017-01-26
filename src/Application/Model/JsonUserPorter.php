@@ -1,7 +1,9 @@
 <?php
 
-namespace Example\UserContext\Model;
+namespace Example\Application\Model;
 
+use Example\UserContext\Model\User;
+use Example\UserContext\Model\UserFactory;
 use Example\UserContext\Model\UserPorter;
 
 class JsonUserPorter implements UserPorter
