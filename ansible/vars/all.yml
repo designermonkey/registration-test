@@ -1,0 +1,49 @@
+---
+server:
+    packages:
+        - git
+        - htop
+        - imagemagick
+        - curl
+        - wget
+        - python-software-properties
+    timezone: UTC
+    locale: LANG=en_US.UTF-8
+vagrant:
+    vm:
+        base_box: bento/ubuntu-16.04
+        hostname: local.registration
+        ip: 192.168.88.197
+        memory: '512'
+        sharedfolder: ./
+        useVagrantCloud: '1'
+        syncType: '0'
+nginx:
+    docroot: /vagrant/public
+    logroot: /vagrant/storage/logs
+    servername: local.registration
+php:
+    ppa: php
+    packages:
+        - php7.0
+        - php7.0-cli
+        - php7.0-common
+        - php7.0-curl
+        - php7.0-fpm
+        - php7.0-gd
+        - php7.0-json
+        - php7.0-mcrypt
+        - php7.0-mysql
+        - php7.0-opcache
+        - php7.0-readline
+        - php7.0-sqlite3
+        - php7.0-xml
+        - php7.0-mbstring
+        - php-cli-prompt
+        - php-imagick
+        - php-json-schema
+    pecl_packages:
+xdebug:
+    display_max_children: 128
+    display_max_data: 102400
+    display_max_depth: 7

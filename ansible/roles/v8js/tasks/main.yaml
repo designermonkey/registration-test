@@ -1,0 +1,6 @@
+---
+- name: Install v8js for PHP
+  become: yes
+  apt: pkg="{{ item }}" state=latest
+  with_items: "{{ v8js.packages }}"
+  when: v8js.packages is defined

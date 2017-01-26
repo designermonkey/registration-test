@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/all.yml
+  roles:
+    - { role: server,  tags: ['system'] }
+    - { role: vagrant, tags: ['system'] }
+    - { role: nginx,   tags: ['server', 'nginx'] }
+    - { role: php,     tags: ['server', 'php'] }
+    - { role: xdebug,  tags: ['server', 'php'] }
+    - { role: app,     tags: ['server', 'app'] }
