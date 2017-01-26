@@ -6,27 +6,27 @@
     <fieldset>
         <label for="email-address">
             <span>Email</span>
-            <input type="email" name="emailAddress" {{#fields.emailAddress}}value="{{.}}"{{/fields.emailAddress}}/>
+            <input type="email" name="emailAddress" {{#fields.emailAddress}}value="{{.}}"{{/fields.emailAddress}} placeholder="Name"/>
             {{# validation.emailAddress }}
                 {{> partials/validation-message }}
             {{/ validation.emailAddress }}
         </label>
         <label for="password">
             <span>Password</span>
-            <input type="password" name="password[password]"{{#fields.password}}value="{{password}}"{{/fields.password}}/>
+            <input type="password" name="password[password]"{{#fields.password}}value="{{password}}"{{/fields.password}} placeholder="Password"/>
             {{# validation.password }}
                 {{> partials/validation-message }}
             {{/ validation.password }}
         </label>
         <label for="password-confirm">
             <span>Confirm Password</span>
-            <input type="password" name="password[confirm]"{{#fields.password}}value="{{confirm}}"{{/fields.password}}/>
+            <input type="password" name="password[confirm]"{{#fields.password}}value="{{confirm}}"{{/fields.password}} placeholder="Confirm Password"/>
         </label>
     </fieldset>
     <fieldset>
         <label for="name">
             <span>Name</span>
-            <input type="text" name="name"{{#fields.name}}value="{{.}}"{{/fields.name}}/>
+            <input type="text" name="name"{{#fields.name}}value="{{.}}"{{/fields.name}} placeholder="Name"/>
             {{# validation.name }}
                 {{> partials/validation-message }}
             {{/ validation.name }}

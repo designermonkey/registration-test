@@ -1,0 +1,20 @@
+// Fonts
+$ff-georgia: Georgia, Cambria, "Times New Roman", Times, serif;
+$ff-helvetica: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+$ff-lucida-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$ff-monospace: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+$ff-verdana: Verdana, Geneva, sans-serif;
+$ff-alte-haas: "Alte Haas Grotesk", $ff-helvetica;
+
+$ff-body: $ff-alte-haas;
+$ff-header: $ff-alte-haas;
+
+// Modular Scale
+$ms-base: 16px;
+// $ms-ratio: $fourth;
+$ms-ratio: $major-second;
+
+// Vertical Rhythm
+$vr-root-px: 16px;
+$vr-ratio: $fifth;
+//$vr-ratio: $major-third;
